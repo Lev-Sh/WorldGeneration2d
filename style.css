@@ -1,0 +1,35 @@
+body {
+    background-color: #111111;
+    border-radius: 30px;
+    height: 500px;
+}
+
+.Titles {
+    display: flex;
+    align-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    color: darkgrey;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 900;
+    height: 15%;
+    background-color: #333333;
+    border-radius: 15px;
+    box-shadow: 5px 5px 0px 5px #222222;
+    z-index: 2;
+    text-shadow: 2px 2px 0 #222222;
+    line-height: 30px;
+    justify-content: space-around;
+    font-size: larger;
+}
+
+.img {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 10%;
+}
+
+img {
+    border: 15px inset #222222;
+}
