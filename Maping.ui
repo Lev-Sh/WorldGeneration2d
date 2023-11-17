@@ -6,40 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>794</width>
-    <height>600</height>
+    <width>869</width>
+    <height>639</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background: rgb(25,25,25) </string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>510</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Generate</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>461</width>
-      <height>351</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
@@ -48,6 +25,11 @@
       <width>59</width>
       <height>17</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: wheat;
+background: rgb(35,35,35)
+</string>
     </property>
     <property name="text">
      <string>Ширина</string>
@@ -62,6 +44,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: wheat;
+background: rgb(35,35,35)
+</string>
+    </property>
     <property name="text">
      <string>Высота</string>
     </property>
@@ -74,6 +61,10 @@
       <width>191</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: rgb(35,35,35)
+</string>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -100,6 +91,11 @@
       <height>17</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: wheat;
+background: rgb(35,35,35)
+</string>
+    </property>
     <property name="text">
      <string>Степень обработки</string>
     </property>
@@ -107,8 +103,8 @@
    <widget class="QLabel" name="seconds">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>180</y>
+      <x>590</x>
+      <y>160</y>
       <width>191</width>
       <height>17</height>
      </rect>
@@ -121,8 +117,13 @@
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: wheat;
+background: rgb(35,35,35)
+</string>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>0</string>
     </property>
    </widget>
    <widget class="QSpinBox" name="widths">
@@ -133,6 +134,14 @@
       <width>121</width>
       <height>23</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: wheat;
+background: rgb(35,35,35)
+</string>
+    </property>
+    <property name="minimum">
+     <number>1</number>
     </property>
     <property name="maximum">
      <number>600</number>
@@ -153,6 +162,14 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: wheat;
+background: rgb(35,35,35)
+</string>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
     <property name="maximum">
      <number>600</number>
     </property>
@@ -160,8 +177,112 @@
      <number>5</number>
     </property>
    </widget>
-   <zorder>label</zorder>
-   <zorder>pushButton</zorder>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>400</y>
+      <width>120</width>
+      <height>80</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>50</y>
+      <width>461</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="showm">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>190</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: gray;
+
+background: rgb(35,35,35)
+</string>
+    </property>
+    <property name="text">
+     <string>Показывать процесс</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>0</y>
+      <width>311</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: wheat;
+background: rgb(35,35,35)
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>220</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: wheat;
+background: rgb(35,35,35)
+</string>
+     </property>
+     <property name="text">
+      <string>Generate</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>220</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: wheat;
+background: rgb(35,35,35)
+</string>
+     </property>
+     <property name="text">
+      <string>Сохранить</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>frame</zorder>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
    <zorder>horizontalSlider</zorder>
@@ -169,13 +290,18 @@
    <zorder>seconds</zorder>
    <zorder>widths</zorder>
    <zorder>heights</zorder>
+   <zorder>horizontalSpacer</zorder>
+   <zorder>verticalSpacer</zorder>
+   <zorder>widget</zorder>
+   <zorder>label</zorder>
+   <zorder>showm</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>794</width>
+     <width>869</width>
      <height>27</height>
     </rect>
    </property>

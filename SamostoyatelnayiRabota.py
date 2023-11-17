@@ -1,15 +1,14 @@
-from PIL import Image, ImageDraw
+from PIL import Image
 from random import randint
 import time
-from random import choice
+from tkinter import filedialog
 from PyQt5 import uic, QtCore, QtWidgets  
-from PyQt5.QtWidgets import QLabel, QVBoxLayout, QApplication, QWidget, QMainWindow, QLineEdit, QSlider
+from PyQt5.QtWidgets import QLabel, QApplication, QMainWindow
 from PyQt5.QtGui import QPixmap
 import sys
 
 
 white = '#FFFFFF'
-
 green = (0, 239, 0)
 sand = (250,250,210)
 forset = (0, 156, 0)
@@ -19,34 +18,47 @@ stone = (192,192,192)
 
 class FileStat(QMainWindow):
     def __init__(self):
-        
+
         super().__init__()
-        uic.loadUi('WORLD_GENERATE\WorldGeneration2d\Maping.ui', self)  # Загружаем дизайн
+        uic.loadUi('WORLD_GENERATE\WorldGeneration2d\Maping.ui', self) 
         self.pushButton.clicked.connect(self.run)
-        #LETS_GOO()
+        self.pushButton_2.clicked.connect(self.save_Img)
+        self.name = "map"
         self.width = 100
         self.height = 100
-
+        self.isshow = False
         self.label = QLabel(self)
         self.pixmap = QPixmap('WORLD_GENERATE\Result.png')
         self.label.setPixmap(self.pixmap)
+        self.label.move(15, 15)
 
+    def save_Img(self):
+        img = Image.open('WORLD_GENERATE\Result.png')
+        file_path = filedialog.asksaveasfilename(defaultextension=".jpg", filetypes=[("JPEG files", "*.jpg"), ("All files", "*.*")])
+        img.save(file_path, 'JPEG')
+        
     def run(self):
+        self.isshow = self.showm.isCheckable()
         self.width = int(self.widths.text())
         self.height = int(self.heights.text())
         self.a = Image.new('RGB', (self.width, self.height), (0, 239, 0))
         selfgreen_screen = self.a.copy()
         selfgreen_screen.save('green_screen.png')
+        self.label.setPixmap(self.pixmap)
         self.result_copy = self.a.copy()
         self.label.resize(self.width,
                     self.height)
         
-        self.LETS_GOO(self.horizontalSlider.value())
+        self.RUN(self.horizontalSlider.value())
         self.pixmap = QPixmap('WORLD_GENERATE\Result.png') 
         self.label.setPixmap(self.pixmap)
 
-
-
+    def show_res(self):
+        if self.isshow:
+            result_copy = self.a.copy()
+            result_copy.save('WORLD_GENERATE\Result.png')
+            self.pixmap = QPixmap('WORLD_GENERATE\Result.png') 
+            self.label.setPixmap(self.pixmap)
 
     def GENERATE_CHAOS(self):
         a = self.a
@@ -61,8 +73,7 @@ class FileStat(QMainWindow):
                 if n == 0:
                     a.putpixel((i, j), blue)
             if(i % 5 == 0):
-                result_copy = a.copy()
-                result_copy.save('WORLD_GENERATE\Result.png')
+                self.show_res()
                 
         chaos_world = a.copy()
         chaos_world.save('WORLD_GENERATE\imagedo.png')
@@ -72,8 +83,6 @@ class FileStat(QMainWindow):
         for i in range(pokolenia):
             for p in range(2, self.width - (stepen - 1)):
                 for k in range(2, self.height - (stepen - 1)):
-                    #n = [a.getpixel((p, k + 1)), a.getpixel((p + 1, k)), a.getpixel((p - 1, k)), a.getpixel((p, k - 1)),\
-                    #      a.getpixel((p + 1, k + 1)), a.getpixel((p + 1, k - 1)), a.getpixel((p - 1, k + 1)), a.getpixel((p - 1, k - 1))]
                     m = []
                     for ang in range(0, stepen):
                         for bng in range(0, stepen):
@@ -93,11 +102,8 @@ class FileStat(QMainWindow):
                         n = randint(0, 1)
                         if n == 0:
                             a.putpixel((i, k), (0, 0, 234))
-                if(p % 5 == 0):
-                    result_copy = a.copy()
-                    result_copy.save('WORLD_GENERATE\Result.png')
-                    
-
+                if(p % 10 == 0):
+                    self.show_res()
 
     def GENERATE_SAND(self):
         a = self.a
@@ -118,11 +124,10 @@ class FileStat(QMainWindow):
                             isblue += 1
                     if isgree == isblue or isgree >= 3: 
                         self.a.putpixel((p, k), sand)
-            if(p % 5 == 0):
-                result_copy = self.a.copy()
-                result_copy.save('WORLD_GENERATE\Result.png')
+            if(p % 10 == 0):
+                self.show_res()
+
     def GENERATE_FOREST(self):
-        
         for p in range(2, self.width - 2):
             if(p % 5 == 0):
                 result_copy = self.a.copy()
@@ -146,72 +151,45 @@ class FileStat(QMainWindow):
                     if isgree + isforers == 8: 
                         self.a.putpixel((p, k), forset)
 
-
     def RAMKI(self):
         for p in range(self.width):
             for k in range(self.height):
                 if p == 0 or p == 1 or p == self.width - 1 or p == self.width - 2:
-                    self.a.putpixel((p, k), (13, 13, 13))
+                    self.a.putpixel((p, k), (45, 45, 45))
                 if k == 0 or k == 1 or k == self.height - 1 or k == self.height - 2:
-                    self.a.putpixel((p, k), (13, 13, 13))
-        result_copy = self.a.copy()
-        result_copy.save('WORLD_GENERATE\Result.png')
-    '''
-    def ANOTHERSMOOTHING(counts: int):
-        another_world = a.copy()
-        another_world.save('WORLD_GENERATE\other_worlddo.png')
-        for count in range(counts):
-            for p in range(7, width - 7, 9):
-                for k in range(7, height - 7, 18):
-                    n = [(p, k + 1), (p + 1, k), (p - 1, k),\
-                        (p, k - 1),((p + 1, k + 1)), (p + 1, k - 1),\
-                        (p - 1, k + 1), (p - 1, k - 1), (p, k + 2),\
-                            (p + 2, k), (p - 2, k), (p, k - 2)]
-                    h = []
-                    for asd in n:
-                        h.append(a.getpixel(asd))
-                    isgree = 0
-                    isblue = 0
-                    for b in h:
-                        if b == green:
-                            isgree += 1
-                        else:
-                            isblue += 1
-                    if isblue < 9:
-                        for gfa in n:
-                            a.putpixel(gfa, green)
-            result_copy = a.copy()
-            result_copy.save('WORLD_GENERATE\Result.png')
-    '''
+                    self.a.putpixel((p, k), (45, 45, 45))
+            self.show_res()
 
-    def LETS_GOO(self, stepens):
+    def RUN(self, stepens):
             start = time.time()
             a = Image.new('RGB', (self.width, self.height), (0, 239, 0))
             a.save('WORLD_GENERATE\img.png')
             result_copy = a.copy()
             self.GENERATE_CHAOS()
+            self.show_res()
             self.SMOOTHING(3, stepens)
-            #SMOOTHING(3, 7)
+            if(self.horizontalSlider.value() > 7):
+                self.SMOOTHING(3, stepens - 6)
+
+            self.show_res()
             self.GENERATE_SAND()
+            self.show_res()
             self.GENERATE_FOREST()
+            self.show_res()
             self.RAMKI()
             a.save('WORLD_GENERATE\img.png')
-            #result_copy.save('WORLD_GENERATE\Result.png')
             end = time.time()
-            self.seconds.setText(str(end))
-            print("Execution time of the program is- ", end-start)
+            self.seconds.setText(str(end - start)[:5] + " секунды")
+            print("Программа ", end-start, "seconds")
 
 if __name__ == "__main__":
     if hasattr(QtCore.Qt, "AA_EnableHighDpiScaling"):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
     if hasattr(QtCore.Qt, "AA_UseHighDpiPixmaps"):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
-
     sys._excepthook = sys.excepthook
-
     app = QApplication(sys.argv)
     w = FileStat()
-
-
+    w.setWindowTitle("2d World Generation")
     w.show()
     sys.exit(app.exec())
