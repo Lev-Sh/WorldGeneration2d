@@ -78,9 +78,6 @@ class FileStat(QMainWindow):
             if i % 5 == 0:
                 self.show_res()
 
-        chaos_world = a.copy()
-        chaos_world.save("WORLD_GENERATE\imagedo.png")
-
     def SMOOTHING(self, pokolenia: int, stepen: int):
         a = self.a
         for i in range(pokolenia):
